@@ -47,3 +47,49 @@ The project implementation lifecycle is split into four distinct phases:
 
 ### 3. Model Architecture & Selection
 The pipeline utilizes a split modeling strategy:
+
+┌─── Regression (Exact Volume) ───► Linear Regression / LSTM (RNN)
+                  │
+📊 Predictive Model ──┤
+│
+└─── Classification (Status)   ───► Logistic Regression / Decision Tree / Random Forest
+
+
+
+
+* **Regression Models (Predicting Exact Volume):**
+    * *Linear Regression:* Serves as a fast, highly interpretable baseline.
+    * *LSTM (Long Short-Term Memory RNN):* Tailor-made for capturing complex, long-term temporal dependencies in time-series sequences.
+* **Classification Models (Predicting Traffic Congestion Status):**
+    * *Logistic Regression:* Computes baseline probabilities for discrete traffic classes.
+    * *Decision Tree:* Offers an interpretable, rule-based logic structure.
+    * *Random Forest:* An ensemble approach that aggregates multiple decision trees to minimize overfitting and maximize classification robustness.
+
+### 4. Deployment
+The trained models are bundled into a pipeline integrated with a real-time front-end interface built using **Gradio**. This UI takes user/live inputs and serves instant inference predictions.
+
+---
+
+## 📊 Results & Evaluation
+
+The system successfully processes real-time weather and temporal inputs to output high-fidelity traffic insights.
+
+### Regression Model Performance
+* **Metrics Tracked:** Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE).
+* **Key Finding:** The **LSTM model** proved to be the most robust architecture for sequence-based forecasting due to its capacity to track historical time dependencies, while Linear Regression provided a lightweight baseline.
+* *Visualized via comparative line plots showing Actual vs. Predicted Traffic Volume.*
+
+### Classification Model Performance
+* **Metrics Tracked:** Accuracy, Precision, Recall, and F1-Score.
+* **Key Finding:** The **Random Forest classifier** significantly outperformed both Logistic Regression and standard Decision Trees when categorizing traffic states (`Low`, `Medium`, `High`).
+* *Visualized and verified using Confusion Matrices.*
+
+### Real-Time Live Integration
+* The system successfully uses the **OpenWeather API** to pull live regional data, transforming immediate environmental updates into reactive traffic alerts instantly.
+
+---
+
+## 🔮 Conclusion
+This project demonstrates how combining weather analytics with deep learning/machine learning models can solve critical urban infrastructure challenges. By blending numerical volume forecasting (`LSTM`) with digestible categorical alerts (`Random Forest`), the platform provides highly actionable insights for both city planners and everyday commuters. 
+
+The optimized, production-ready neural network is saved as a reusable `.h5` model file, paving the way for seamless integration into broader smart-city infrastructures, GPS navigation platforms, and mobile transit applications.
