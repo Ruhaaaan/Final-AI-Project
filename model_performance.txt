@@ -1,0 +1,12 @@
+==================================================
+          MODEL PERFORMANCE EVALUATION            
+==================================================
+
+--- Deep Learning LSTM Model (Traffic Volume Forecasting) ---
+Mean Absolute Error (MAE):     2808.8276
+Mean Squared Error (MSE):      11599498.0000
+Root Mean Squared Error (RMSE): 3405.8036
+
+--- Logistic Regression Model (Traffic Level Classification) ---
+Classification Accuracy:        67.07%
+==================================================
